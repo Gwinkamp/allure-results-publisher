@@ -5,10 +5,7 @@
 ## Установка
 
 ```bash
-pip install \
-    --index-url https://registry.astralnalog.ru/repository/pypi-edo/simple/ \
-    --extra-index-url https://pypi.org/simple \
-    allure-publisher
+pip install allure-publisher
 ```
 
 ## Запуск
