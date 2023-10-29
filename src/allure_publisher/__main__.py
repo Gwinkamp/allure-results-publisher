@@ -30,6 +30,11 @@ def main(
             False,
             '--trigger-build', '-t',
             help='Триггер сборки нового отчета allure-report'
+        ),
+        rebuild_existing_report: bool = typer.Option(
+            False,
+            '--rebuild-existing-report', '-r',
+            help='Пересобрать текущий отчет'
         )
 ):
     results = collect_files(path)
@@ -38,7 +43,8 @@ def main(
         results=results,
         username=user,
         password=password,
-        trigger_build=trigger_build
+        trigger_build=trigger_build,
+        rebuild_existing_report=rebuild_existing_report
     )
 
 
