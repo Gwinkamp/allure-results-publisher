@@ -1,5 +1,4 @@
 import io
-from concurrent.futures import ThreadPoolExecutor, wait
 from pathlib import Path
 from zipfile import ZipFile
 
@@ -17,10 +16,11 @@ def collect_files(directory: Path):
 
 def _pack_files(archive: ZipFile, dir_path: Path):
     """Упаковать все файлы директории в архив"""
-    with ThreadPoolExecutor() as executor:
-        files = [item for item in dir_path.iterdir() if item.is_file()]
-        futures = [executor.submit(_pack_file, archive, file) for file in files]
-        wait(futures)
+    for item in dir_path.iterdir():
+        if not item.is_file():
+            continue
+
+        _pack_file(archive, item)
 
 
 def _pack_file(archive: ZipFile, file_path: Path):
